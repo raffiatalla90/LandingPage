@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GetMasjid - Bumper Digital Booth Expo (1920x1080)</title>
+
+  <!-- Modern Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&family=Amiri:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome Icons for high-end UI highlights -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- html2canvas for instant 1920x1080 PNG export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Floating Control Bar for Expo Booth Operator -->
+  <div class="expo-toolbar" id="expoToolbar">
+    <div class="toolbar-info">
+      <span class="badge-status"><i class="fa-solid fa-circle-play"></i> LIVE EXPO DISPLAY</span>
+      <span class="res-info">1920 × 1080 px (16:9)</span>
+    </div>
+    <div class="toolbar-actions">
+      <button class="btn-tool" id="btnFullscreen" title="Masuk Mode Layar Penuh (TV Booth)">
+        <i class="fa-solid fa-expand"></i> Layar Penuh (TV)
+      </button>
+      <button class="btn-tool btn-gold" id="btnExportPNG" title="Download Gambar PNG 1920x1080">
+        <i class="fa-solid fa-download"></i> Unduh Gambar 1920x1080
+      </button>
+      <button class="btn-tool btn-close-tool" id="btnToggleToolbar" title="Sembunyikan Menu Ini">
+        <i class="fa-solid fa-eye-slash"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Re-open Toolbar Floating Pill (when toolbar is hidden) -->
+  <button class="floating-unhide-btn" id="btnUnчнойToolbar" title="Tampilkan Kontrol">
+    <i class="fa-solid fa-gear"></i> Kontrol Layar
+  </button>
+
+  <!-- 1920x1080 BUMPER CANVAS WRAPPER (Auto-scaled to fit any display) -->
+  <div class="stage-container" id="stageContainer">
+    <div class="bumper-stage" id="bumperStage">
+
+      <!-- ================= BACKGROUND LAYERS ================= -->
+      <!-- Soft Islamic Arabesque Geometric Pattern -->
+      <div class="bg-layer bg-pattern"></div>
+
+      <!-- Ambient Glows (Teal & Gold) -->
+      <div class="ambient-orb orb-teal-top"></div>
+      <div class="ambient-orb orb-gold-right"></div>
+      <div class="ambient-orb orb-emerald-bottom"></div>
+
+      <!-- Subtle Mosque Skyline Silhouette at Bottom -->
+      <div class="bg-mosque-silhouette">
+        <svg viewBox="0 0 1920 280" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <!-- Soft Mosque Vector Horizon -->
+          <path opacity="0.04"
+            d="M0,280 L0,230 Q200,230 350,210 T700,220 Q850,200 960,150 Q1070,200 1220,220 T1570,210 Q1720,230 1920,230 L1920,280 Z"
+            fill="#0A5C4A" />
+          <path opacity="0.06" d="M200,280 L200,210 C200,180 230,160 250,140 C270,160 300,180 300,210 L300,280 Z"
+            fill="#0D7C66" />
+          <rect opacity="0.06" x="180" y="110" width="12" height="170" rx="3" fill="#0D7C66" />
+          <path opacity="0.07" d="M186,95 L190,110 L182,110 Z" fill="#D4AF37" />
+
+          <!-- Grand Mosque Center-Right Horizon -->
+          <g opacity="0.06" transform="translate(1080, 50)">
+            <path d="M120,230 C120,130 170,80 220,40 C270,80 320,130 320,230 Z" fill="#0A5C4A" />
+            <rect x="70" y="70" width="20" height="160" rx="4" fill="#0D7C66" />
+            <path d="M80,45 L86,70 L74,70 Z" fill="#C5A059" />
+            <rect x="350" y="70" width="20" height="160" rx="4" fill="#0D7C66" />
+            <path d="M360,45 L366,70 L354,70 Z" fill="#C5A059" />
+            <!-- Dome Crescent -->
+            <circle cx="220" cy="25" r="10" stroke="#D4AF37" stroke-width="2" fill="none" />
+          </g>
+
+          <g opacity="0.05" transform="translate(1550, 100)">
+            <path d="M80,180 C80,110 120,70 160,35 C200,70 240,110 240,180 Z" fill="#0A5C4A" />
+            <rect x="40" y="60" width="16" height="120" rx="3" fill="#0D7C66" />
+            <rect x="264" y="60" width="16" height="120" rx="3" fill="#0D7C66" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Luxury Gold Hairline Accent (Top & Bottom subtle borders) -->
+      <div class="gold-accent-line top-line"></div>
+      <div class="gold-accent-line bottom-line"></div>
+
+      <!-- ================= CONTENT GRID (SAFE AREA: 80px PADDING) ================= -->
+      <div class="bumper-grid">
+
+        <!-- ================= BAGIAN KIRI: BRANDING & MESSAGING ================= -->
+        <div class="left-column">
+
+          <!-- Category / Expo Header Badge -->
+          <div class="expo-pill-badge">
+            <span class="badge-dot"></span>
+            <span class="badge-text">APLIKASI & PLATFORM DIGITAL MASJID</span>
+          </div>
+
+          <!-- Official GetMasjid Logo Container -->
+          <div class="logo-wrapper">
+            <img src="assets/logo_getmasjid.jpg" alt="GetMasjid Official Logo" class="brand-logo" id="brandLogo">
+          </div>
+
+          <!-- Divider with Gold Glow -->
+          <div class="decorative-separator">
+            <span class="sep-line"></span>
+            <span class="sep-diamond"><i class="fa-solid fa-mosque"></i></span>
+            <span class="sep-line"></span>
+          </div>
+
+          <!-- Tagline Utama -->
+          <div class="tagline-container">
+            <h1 class="main-tagline">
+              <span class="tagline-row">Menghubungkan Masjid,</span>
+              <span class="tagline-row gradient-text">Memberdayakan Umat</span>
+            </h1>
+          </div>
+
+          <!-- Deskripsi Singkat -->
+          <p class="sub-headline">
+            Digitalisasi Ekosistem Masjid dalam Satu Platform
+          </p>
+
+          <!-- Feature Highlights (4 Pillars) -->
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon-box">
+                <i class="fa-solid fa-map-location-dot"></i>
+              </div>
+              <div class="feature-info">
+                <h4 class="feature-title">Informasi Masjid</h4>
+                <p class="feature-sub">Peta & Fasilitas Terdekat</p>
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon-box gold-icon">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <div class="feature-info">
+                <h4 class="feature-title">Jadwal Sholat</h4>
+                <p class="feature-sub">Waktu Presisi & Hitung Mundur</p>
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon-box">
+                <i class="fa-solid fa-users"></i>
+              </div>
+              <div class="feature-info">
+                <h4 class="feature-title">Aktivitas Jamaah</h4>
+                <p class="feature-sub">Kajian & Presisi Sholat</p>
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon-box gold-icon">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+              </div>
+              <div class="feature-info">
+                <h4 class="feature-title">Donasi & Zakat</h4>
+                <p class="feature-sub">Infaq Transparan & Mudah</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Call to Action (CTA) & Website Info -->
+          <div class="cta-container">
+            <div class="cta-button-wrapper">
+              <div class="cta-glow-pulse"></div>
+              <div class="cta-button">
+                <span class="cta-text">Kenali GetMasjid Lebih Dekat</span>
+                <div class="cta-icon-circle">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="booth-invitation">
+              <span class="booth-tag"><i class="fa-solid fa-star"></i> Kunjungi Booth Kami</span>
+              <span class="booth-note">Scan & Coba Prototype Langsung</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= BAGIAN KANAN: 3 SMARTPHONES PROTOTYPE SHOWCASE ================= -->
+        <div class="right-column">
+
+          <!-- Mockup Stage with Dynamic Ambient Spotlight -->
+          <div class="showcase-stage">
+
+            <!-- Ambient Glowing Ring behind Hero Smartphone -->
+            <div class="hero-glow-ring"></div>
+            <div class="hero-glow-particles"></div>
+
+            <!-- SMARTPHONE 1: KIRI BELAKANG (Peta & Pencarian Masjid) -->
+            <div class="phone-mockup phone-left">
+              <div class="phone-case">
+                <div class="phone-bezel">
+                  <div class="speaker-pill"></div>
+                  <div class="screen-container">
+                    <img src="assets/screenshot_map.png" alt="GetMasjid - Peta & Pencarian Masjid"
+                      class="prototype-screen">
+                  </div>
+                </div>
+              </div>
+              <!-- Floating Feature Chip -->
+              <div class="phone-feature-badge badge-pos-left">
+                <i class="fa-solid fa-compass"></i>
+                <span>Pencarian Masjid</span>
+              </div>
+            </div>
+
+            <!-- SMARTPHONE 2: KANAN BELAKANG (Detail Masjid & Jadwal) -->
+            <div class="phone-mockup phone-right">
+              <div class="phone-case">
+                <div class="phone-bezel">
+                  <div class="speaker-pill"></div>
+                  <div class="screen-container">
+                    <img src="assets/screenshot_detail.png" alt="GetMasjid - Detail Masjid & Presensi"
+                      class="prototype-screen">
+                  </div>
+                </div>
+              </div>
+              <!-- Floating Feature Chip -->
+              <div class="phone-feature-badge badge-pos-right">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Detail & Presensi</span>
+              </div>
+            </div>
+
+            <!-- SMARTPHONE 3: TENGAH DEPAN (FOCAL POINT UTAMA - Beranda & Jadwal Sholat) -->
+            <div class="phone-mockup phone-center">
+              <div class="hero-crown-badge">
+                <i class="fa-solid fa-mobile-screen-button"></i> LIVE PROTOTYPE
+              </div>
+              <div class="phone-case hero-case">
+                <div class="phone-glass-glare"></div>
+                <div class="phone-bezel">
+                  <div class="speaker-pill"></div>
+                  <div class="camera-lens"></div>
+                  <div class="screen-container">
+                    <img src="assets/screenshot_beranda.png" alt="GetMasjid - Beranda Utama" class="prototype-screen">
+                  </div>
+                </div>
+              </div>
+              <!-- Floating Accent Badge -->
+              <div class="phone-feature-badge badge-pos-center">
+                <i class="fa-solid fa-mosque"></i>
+                <span>Beranda & Jadwal Sholat</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Showcase Caption for Visitors -->
+          <div class="showcase-caption">
+            <div class="caption-line"></div>
+            <div class="caption-content">
+              <span class="caption-dot"></span>
+              <span class="caption-text">Tampilan Antarmuka Asli Aplikasi Mobile GetMasjid</span>
+            </div>
+            <div class="caption-line"></div>
+          </div>
+
+        </div>
+
+      </div> <!-- End bumper-grid -->
+
+    </div> <!-- End bumper-stage -->
+  </div> <!-- End stage-container -->
+
+  <script src="script.js"></script>
+</body>
+
+</html>

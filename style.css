@@ -1,0 +1,896 @@
+/* ==========================================================================
+   GETMASJID DIGITAL BUMPER - EXPO EXHIBITION 1920x1080 DESIGN SYSTEM
+   ========================================================================== */
+
+:root {
+  /* Color Palette - Authentic GetMasjid Brand */
+  --primary-teal: #0D7C66;
+  --primary-emerald: #0A5C4A;
+  --primary-dark: #073B30;
+  --primary-light: #41B3A2;
+  --accent-cyan: #00B4D8;
+  --accent-gold: #D4AF37;
+  --accent-gold-light: #F3E5AB;
+  --accent-gold-dark: #AA820A;
+  --accent-gold-gradient: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #B8860B 100%);
+
+  /* Backgrounds & Neutrals */
+  --bg-gradient-start: #FAFCFB;
+  --bg-gradient-mid: #F0F7F4;
+  --bg-gradient-end: #E6F3EE;
+  --surface-white: #FFFFFF;
+  --surface-glass: rgba(255, 255, 255, 0.88);
+  --surface-glass-border: rgba(13, 124, 102, 0.14);
+
+  /* Text Colors */
+  --text-headline: #092C25;
+  --text-body: #2D4A43;
+  --text-muted: #5C7A73;
+
+  /* Typography */
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-arabic: 'Amiri', serif;
+
+  /* Shadows & Depth */
+  --shadow-sm: 0 4px 12px rgba(9, 44, 37, 0.06);
+  --shadow-md: 0 10px 25px rgba(9, 44, 37, 0.08);
+  --shadow-lg: 0 20px 45px rgba(9, 44, 37, 0.12);
+  --shadow-phone-hero: 0 35px 70px -15px rgba(7, 59, 48, 0.35), 0 0 45px rgba(13, 124, 102, 0.2);
+  --shadow-phone-side: 0 25px 50px -10px rgba(7, 59, 48, 0.22);
+}
+
+/* Reset & Global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: #0d1a17;
+  /* Dark backdrop for operator viewport */
+  color: var(--text-body);
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   OPERATOR TOOLBAR (Hidden during pure export/clean presentation)
+   ========================================================================== */
+.expo-toolbar {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background: rgba(13, 26, 23, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 10px 24px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.expo-toolbar.hidden {
+  transform: translate(-50%, -120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toolbar-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge-status {
+  background: rgba(0, 180, 216, 0.2);
+  color: #48CAE4;
+  border: 1px solid rgba(0, 180, 216, 0.4);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-status i {
+  color: #00F0FF;
+  animation: pulse-dot 1.5s infinite;
+}
+
+.res-info {
+  color: #A0BDB6;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-tool {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-tool:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.btn-tool.btn-gold {
+  background: var(--accent-gold-gradient);
+  color: #073B30;
+  border: 1px solid #FFE082;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+}
+
+.btn-tool.btn-gold:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn-close-tool {
+  padding: 7px 10px;
+  background: transparent;
+  border: none;
+  color: #8EAAA3;
+}
+
+.btn-close-tool:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.floating-unhide-btn {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  z-index: 9998;
+  background: rgba(13, 26, 23, 0.8);
+  backdrop-filter: blur(8px);
+  color: var(--accent-gold);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.floating-unhide-btn.visible {
+  display: flex;
+}
+
+/* ==========================================================================
+   STAGE CONTAINER - AUTOMATIC 1920x1080 RESPONSIVE SCALING
+   ========================================================================== */
+.stage-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b1513;
+}
+
+.bumper-stage {
+  width: 1920px;
+  height: 1080px;
+  min-width: 1920px;
+  min-height: 1080px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(120% 90% at 20% 20%, #FFFFFF 0%, #F5FAF7 45%, #EAF5F0 85%, #DFEFE9 100%);
+  transform-origin: center center;
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================================================
+   BACKGROUND VISUAL ELEMENTS (Islamic Patterns & Ambient Glow)
+   ========================================================================== */
+/* Seamless Islamic Arabesque Star Pattern */
+.bg-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at center, rgba(13, 124, 102, 0.05) 1.5px, transparent 1.5px),
+    radial-gradient(circle at center, rgba(212, 175, 55, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px, 80px 80px;
+  background-position: 0 0, 20px 20px;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* Ambient Glow Orbs */
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+}
+
+.orb-teal-top {
+  top: -150px;
+  left: 25%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(65, 179, 162, 0.18) 0%, rgba(65, 179, 162, 0) 70%);
+}
+
+.orb-gold-right {
+  top: 15%;
+  right: -100px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(212, 175, 55, 0) 70%);
+}
+
+.orb-emerald-bottom {
+  bottom: -200px;
+  left: 10%;
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(13, 124, 102, 0.15) 0%, rgba(13, 124, 102, 0) 70%);
+}
+
+/* Mosque Skyline Horizon */
+.bg-mosque-silhouette {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 280px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bg-mosque-silhouette svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Luxury Gold Hairline Accent */
+.gold-accent-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 10;
+}
+
+.gold-accent-line.top-line {
+  top: 0;
+  background: linear-gradient(90deg, transparent 5%, #D4AF37 35%, #FFF0BA 50%, #D4AF37 65%, transparent 95%);
+  opacity: 0.85;
+}
+
+.gold-accent-line.bottom-line {
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 5%, #0D7C66 30%, #D4AF37 50%, #0D7C66 70%, transparent 95%);
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   SAFE AREA GRID (80px Margins on all edges for TV/Monitor Bezels)
+   ========================================================================== */
+.bumper-grid {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  padding: 70px 85px;
+  display: grid;
+  grid-template-columns: 46% 54%;
+  gap: 30px;
+  align-items: center;
+}
+
+/* ==========================================================================
+   LEFT COLUMN - BRANDING, MESSAGING & HIGH-LEVEL HIGHLIGHTS
+   ========================================================================== */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding-right: 20px;
+}
+
+/* Category Expo Pill Badge */
+.expo-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(13, 124, 102, 0.1) 0%, rgba(212, 175, 55, 0.12) 100%);
+  border: 1px solid rgba(13, 124, 102, 0.25);
+  padding: 7px 18px;
+  border-radius: 30px;
+  width: fit-content;
+  margin-bottom: 22px;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00B4D8;
+  box-shadow: 0 0 10px #00B4D8;
+  animation: pulse-dot 2s infinite;
+}
+
+.badge-text {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--primary-dark);
+}
+
+/* Official Logo Wrapper */
+.logo-wrapper {
+  margin-bottom: 18px;
+}
+
+.brand-logo {
+  height: 110px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 16px rgba(13, 124, 102, 0.12));
+}
+
+/* Decorative Gold Separator */
+.decorative-separator {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  width: 90%;
+}
+
+.sep-line {
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.5), rgba(13, 124, 102, 0.15));
+}
+
+.sep-diamond {
+  color: var(--accent-gold);
+  font-size: 15px;
+  filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.4));
+}
+
+/* Main Tagline */
+.tagline-container {
+  margin-bottom: 14px;
+}
+
+.main-tagline {
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.8px;
+  color: var(--text-headline);
+}
+
+.tagline-row {
+  display: block;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #0D7C66 0%, #08604F 40%, #009688 70%, #C5A059 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Sub-headline */
+.sub-headline {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary-teal);
+  line-height: 1.45;
+  margin-bottom: 30px;
+  letter-spacing: -0.2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sub-headline::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 3px;
+  background: var(--accent-gold);
+  border-radius: 2px;
+}
+
+/* Features Grid (4 Minimal High-Impact Pillars) */
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 18px;
+  margin-bottom: 36px;
+  width: 96%;
+}
+
+.feature-card {
+  background: var(--surface-glass);
+  border: 1px solid var(--surface-glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 14px 18px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 4px 16px rgba(13, 124, 102, 0.05);
+  transition: all 0.3s ease;
+}
+
+.feature-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0D7C66 0%, #085646 100%);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(13, 124, 102, 0.25);
+}
+
+.feature-icon-box.gold-icon {
+  background: var(--accent-gold-gradient);
+  color: #073B30;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.feature-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-headline);
+  letter-spacing: -0.2px;
+  margin-bottom: 2px;
+}
+
+.feature-sub {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* Call To Action (CTA) */
+.cta-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.cta-button-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.cta-glow-pulse {
+  position: absolute;
+  inset: -3px;
+  background: linear-gradient(90deg, #0D7C66, #D4AF37, #00B4D8);
+  border-radius: 40px;
+  filter: blur(8px);
+  opacity: 0.6;
+  animation: pulse-glow 3s infinite alternate;
+}
+
+.cta-button {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(135deg, #094E3F 0%, #0D7C66 100%);
+  color: #FFFFFF;
+  padding: 16px 28px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 10px 25px rgba(9, 78, 63, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cta-text {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.cta-icon-circle {
+  width: 32px;
+  height: 32px;
+  background: var(--accent-gold-gradient);
+  color: #073B30;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.booth-invitation {
+  display: flex;
+  flex-direction: column;
+}
+
+.booth-tag {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-gold-dark);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.booth-tag i {
+  color: var(--accent-gold);
+}
+
+.booth-note {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   RIGHT COLUMN - 3 SMARTPHONE PROTOTYPE HERO SHOWCASE
+   ========================================================================== */
+.right-column {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.showcase-stage {
+  position: relative;
+  width: 100%;
+  height: 820px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ambient Backlight for Center Phone */
+.hero-glow-ring {
+  position: absolute;
+  width: 480px;
+  height: 680px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(13, 124, 102, 0.22) 0%, rgba(212, 175, 55, 0.08) 50%, transparent 75%);
+  filter: blur(40px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Smartphone Mockup Universal Styles */
+.phone-mockup {
+  position: absolute;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.phone-case {
+  background: #1e2d29;
+  border-radius: 46px;
+  padding: 10px;
+  position: relative;
+  border: 3.5px solid #2a3d38;
+  box-shadow: var(--shadow-phone-side);
+}
+
+.phone-bezel {
+  background: #000000;
+  border-radius: 38px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #1c2724;
+}
+
+/* Speaker Pill & Camera */
+.speaker-pill {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65px;
+  height: 5px;
+  background: #111;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+.camera-lens {
+  position: absolute;
+  top: 10px;
+  right: 32%;
+  width: 6px;
+  height: 6px;
+  background: #0a211e;
+  border-radius: 50%;
+  z-index: 11;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.screen-container {
+  overflow: hidden;
+  border-radius: 36px;
+  background: #FFFFFF;
+  display: flex;
+}
+
+.prototype-screen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* Feature Badge on Phones */
+.phone-feature-badge {
+  position: absolute;
+  bottom: -18px;
+  background: rgba(9, 44, 37, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #FFFFFF;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  z-index: 15;
+}
+
+.phone-feature-badge i {
+  color: var(--accent-gold);
+  font-size: 12px;
+}
+
+/* 1. LEFT PHONE (Peta / Map View) */
+.phone-left {
+  left: 30px;
+  top: 95px;
+  z-index: 2;
+  transform: rotate(-5.5deg) translateY(10px) scale(0.88);
+  opacity: 0.94;
+}
+
+.phone-left .screen-container {
+  width: 320px;
+  height: 640px;
+}
+
+/* 2. RIGHT PHONE (Detail Masjid & Jadwal) */
+.phone-right {
+  right: 30px;
+  top: 95px;
+  z-index: 2;
+  transform: rotate(5.5deg) translateY(10px) scale(0.88);
+  opacity: 0.94;
+}
+
+.phone-right .screen-container {
+  width: 320px;
+  height: 640px;
+}
+
+/* 3. CENTER PHONE (Hero Focal Point - Beranda) */
+.phone-center {
+  z-index: 5;
+  top: 35px;
+  transform: scale(1.04);
+}
+
+.phone-center .phone-case.hero-case {
+  background: linear-gradient(145deg, #253d36 0%, #152622 100%);
+  border: 4px solid #3c5d53;
+  border-radius: 50px;
+  padding: 12px;
+  box-shadow: var(--shadow-phone-hero);
+  animation: hero-float 6s ease-in-out infinite;
+}
+
+.phone-center .phone-bezel {
+  border-radius: 40px;
+}
+
+.phone-center .screen-container {
+  width: 350px;
+  height: 700px;
+}
+
+/* Crown Live Prototype Tag on Hero Phone */
+.hero-crown-badge {
+  position: absolute;
+  top: -16px;
+  z-index: 20;
+  background: var(--accent-gold-gradient);
+  color: #073B30;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+  border: 1px solid #FFF59D;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Glass Reflection glare across phone screen */
+.phone-glass-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.03) 40%, transparent 60%);
+  pointer-events: none;
+  z-index: 8;
+  border-radius: 46px;
+}
+
+.badge-pos-center {
+  bottom: -22px;
+  background: linear-gradient(135deg, #093E33 0%, #0D7C66 100%);
+  border: 1.5px solid var(--accent-gold);
+  padding: 8px 22px;
+  font-size: 14.5px;
+  font-weight: 700;
+}
+
+/* Caption Below Phones */
+.showcase-caption {
+  position: absolute;
+  bottom: 25px;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.caption-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(13, 124, 102, 0.25), transparent);
+}
+
+.caption-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  padding: 6px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(13, 124, 102, 0.15);
+}
+
+.caption-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--primary-teal);
+  border-radius: 50%;
+}
+
+.caption-text {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+}
+
+/* ==========================================================================
+   ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.35);
+    opacity: 0.75;
+  }
+}
+
+@keyframes pulse-glow {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.98);
+  }
+
+  100% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes hero-float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ==========================================================================
+   CLEAN EXPORT MODE (When capturing 1920x1080 PNG image)
+   ========================================================================== */
+.clean-export-mode .expo-toolbar,
+.clean-export-mode .floating-unhide-btn {
+  display: none !important;
+}
+
+.clean-export-mode body {
+  background: transparent !important;
+}
